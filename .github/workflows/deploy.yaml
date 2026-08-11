@@ -25,6 +25,13 @@ jobs:
       - name: Run tests
         run: npm run test
 
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@v1
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:
